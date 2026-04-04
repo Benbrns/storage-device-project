@@ -17,11 +17,13 @@ public class StorageDevice {
 		if (freeBlocks.size() < blockCount) {
 			throw new IllegalArgumentException("No available free space left");
 		}
+		List<Integer> allocated = new ArrayList<>();
 		for (int i = 0; i < blockCount; i++) {
 			int block = freeBlocks.remove(0);
 			usedBlocks.add(block);
+			allocated.add(block);
 		}
-		return usedBlocks;
+		return allocated;
 	}
 
 	public List<Integer> free(List<Integer> blocks) {
@@ -47,19 +49,19 @@ public class StorageDevice {
 	
 	// GETTERS
 	public int totalBlockCount() {
-		return this.blockCount;
+		return blockCount;
 	}
 
 	public int blockSize() {
-		return this.blockSize;
+		return blockSize;
 	}
 
 	public int freeBlocksCount() {
-		return this.freeBlocks.size();
+		return freeBlocks.size();
 	}
 
 	public int usedBlocksCount() {
-		return this.usedBlocks.size();
+		return usedBlocks.size();
 	}
 
 	@Override
@@ -67,5 +69,4 @@ public class StorageDevice {
 		return "StorageDevice [blockCount=" + blockCount + ", blockSize=" + blockSize + ", freeBlocks=" + freeBlocks
 				+ ", usedBlocks=" + usedBlocks + "]";
 	}
-
 }
