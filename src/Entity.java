@@ -4,7 +4,6 @@ public abstract class Entity {
 
   public Entity(StorageDevice storageDevice, String name) {
     this.storageDevice = storageDevice;
-    isValidName(name);
     setName(name);
   }
 
@@ -16,6 +15,7 @@ public abstract class Entity {
   }
 
   public void setName(String name) {
+    isValidName(name);
     this.name = name;
   }
 
