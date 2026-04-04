@@ -26,7 +26,7 @@ public class StorageDevice {
 		return allocated;
 	}
 
-	public List<Integer> free(List<Integer> blocks) {
+	public void free(List<Integer> blocks) {
 		for (int i = 0; i < blocks.size(); i++) {
 			int block = blocks.get(i);
 			if (!usedBlocks.contains(block)) {
@@ -36,7 +36,6 @@ public class StorageDevice {
 			freeBlocks.add(block);
 		}
 		freeBlocks.sort(null);
-		return freeBlocks;
 	}
 
 	//INIT
