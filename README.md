@@ -61,15 +61,19 @@ Supports:
 ## Example
 
 ```java
-StorageDevice ssd = new StorageDevice(100, 4096);
+StorageDevice mySSD = new StorageDevice(1000, 4096);
+Directory directory = new Directory(mySSD, "myFolder");
 
-File file = new File(ssd, "notes.txt");
-file.grow(5);
+// # Initially, a directory takes no room
+System.out.println(">>Directory size in blocks\n" + directory.sizeInBlocks() + "\n");
 
-System.out.println(file.getSizeInBlocks());
+// # We add a file
+File file1 = new File(mySSD, "file1");
+file1.grow(5);
+directory.add(file1);
 
-Directory folder = new Directory(ssd, "documents");
-folder.add(file);
+// # The directory's size is the sum of all of its children's sizes
+System.out.println(">>Directory size in blocks\n" + directory.sizeInBlocks() + "\n");
 ```
 
 ## Repository
