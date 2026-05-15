@@ -1,18 +1,82 @@
-## Getting Started
+# Storage Device Project
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+A simple file system simulation written in Java.
 
-## Folder Structure
+This project models how storage devices, files, and directories work internally by using block allocation and recursive directory management.
 
-The workspace contains two folders by default, where:
+## Features
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+- Simulated storage device with fixed-size blocks
+- Block allocation and freeing system
+- File creation and dynamic growth
+- Recursive directory structure
+- File and directory clearing
+- Name validation system
+- Object-oriented design using inheritance and abstraction
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+## Classes
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+### StorageDevice
+Represents a storage device (SSD/USB/etc.) with:
+- Fixed number of blocks
+- Block allocation
+- Block freeing
+- Tracking used and available storage
 
-## Dependency Management
+### Entity
+Abstract base class for:
+- Files
+- Directories
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+Handles:
+- Name validation
+- Storage reference
+- Size calculations
+
+### File
+Represents a file stored on the storage device.
+Supports:
+- Growing in size
+- Block allocation
+- Clearing/freeing blocks
+
+### Directory
+Represents a folder that can contain:
+- Files
+- Other directories
+
+Supports:
+- Recursive size calculation
+- Recursive clearing
+
+## Concepts Practiced
+
+- Object-Oriented Programming (OOP)
+- Inheritance
+- Abstract classes
+- Encapsulation
+- Recursive algorithms
+- Storage management simulation
+
+## Example
+
+```java
+StorageDevice ssd = new StorageDevice(100, 4096);
+
+File file = new File(ssd, "notes.txt");
+file.grow(5);
+
+System.out.println(file.getSizeInBlocks());
+
+Directory folder = new Directory(ssd, "documents");
+folder.add(file);
+```
+
+## Repository
+
+GitHub Repository:
+https://github.com/Benbrns/storage-device-project
+
+## Author
+
+Ben
